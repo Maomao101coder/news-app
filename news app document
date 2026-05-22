@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsHub - Latest News at Your Fingertips</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23FF6B6B'>📰</text></svg>">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <span class="logo-icon">📰</span>
+                <h1>NewsHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul class="categories">
+                    <li><button class="category-btn active" data-category="general">All</button></li>
+                    <li><button class="category-btn" data-category="business">Business</button></li>
+                    <li><button class="category-btn" data-category="technology">Tech</button></li>
+                    <li><button class="category-btn" data-category="sports">Sports</button></li>
+                    <li><button class="category-btn" data-category="health">Health</button></li>
+                    <li><button class="category-btn" data-category="science">Science</button></li>
+                    <li><button class="category-btn" data-category="entertainment">Entertainment</button></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search news...">
+                <button id="searchBtn" class="search-btn">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="news-section">
+            <div class="controls">
+                <select id="countrySelect" class="country-select">
+                    <option value="us">United States</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="in">India</option>
+                    <option value="de">Germany</option>
+                    <option value="fr">France</option>
+                    <option value="it">Italy</option>
+                </select>
+                <div class="sort-controls">
+                    <label>Sort by:</label>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="publishedAt">Latest</option>
+                        <option value="relevancy">Relevance</option>
+                        <option value="popularity">Popular</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading latest news...</p>
+            </div>
+
+            <div class="news-grid" id="newsGrid">
+                <!-- News articles will be inserted here -->
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="pagination">
+                <button id="prevBtn" class="pagination-btn" disabled>← Previous</button>
+                <span id="pageInfo" class="page-info">Page 1</span>
+                <button id="nextBtn" class="pagination-btn">Next →</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for full article view -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <article id="modalArticle"></article>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 NewsHub. Powered by <a href="https://newsapi.org" target="_blank">NewsAPI</a></p>
+        <p>Get your free API key at <a href="https://newsapi.org" target="_blank">newsapi.org</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
