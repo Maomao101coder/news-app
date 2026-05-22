@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NewsHub - A premium, modern news application pulling global headlines from top sources with clean reading modes and bookmarks.">
+    <title>NewsHub // Modern Global News Reader</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%237c5dfa'>📰</text></svg>">
+</head>
+<body>
+    <!-- Top Glass Navbar -->
+    <header class="navbar" id="mainHeader">
+        <div class="navbar-container">
+            <div class="logo-group">
+                <span class="logo-icon">⚡</span>
+                <h1 class="logo-text">News<span>Hub</span></h1>
+            </div>
+
+            <!-- Search Field -->
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search news articles...">
+                <button id="searchBtn" class="action-icon-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" class="action-icon-btn" title="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+
+                <!-- Layout Toggle (Grid/List) -->
+                <button id="layoutToggleBtn" class="action-icon-btn" title="Toggle View Layout">
+                    <svg class="grid-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <svg class="list-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </button>
+
+                <!-- Bookmarks Drawer Toggle -->
+                <button id="bookmarksToggleBtn" class="action-icon-btn badge-container" title="Bookmarks">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    <span class="badge" id="bookmarkBadge">0</span>
+                </button>
+
+                <!-- Settings Modal Toggle -->
+                <button id="settingsToggleBtn" class="action-icon-btn" title="API Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Categories Scrolling Subbar -->
+        <nav class="categories-bar">
+            <div class="categories-container">
+                <button class="category-btn active" data-category="general">Global Feed</button>
+                <button class="category-btn" data-category="business">Business</button>
+                <button class="category-btn" data-category="technology">Technology</button>
+                <button class="category-btn" data-category="sports">Sports</button>
+                <button class="category-btn" data-category="health">Health & Medical</button>
+                <button class="category-btn" data-category="science">Science</button>
+                <button class="category-btn" data-category="entertainment">Entertainment</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-layout">
+        <!-- Content Area -->
+        <section class="main-content">
+            <!-- Filter Actions & Stats -->
+            <div class="content-header">
+                <div class="api-status-indicator" id="apiStatusIndicator">
+                    <span class="status-dot green"></span>
+                    <span class="status-text" id="statusText">Demo Mode</span>
+                </div>
+                <div class="filter-controls">
+                    <div class="control-group">
+                        <label for="countrySelect">Region:</label>
+                        <select id="countrySelect">
+                            <option value="us">United States</option>
+                            <option value="gb">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="au">Australia</option>
+                            <option value="in">India</option>
+                            <option value="de">Germany</option>
+                            <option value="fr">France</option>
+                            <option value="it">Italy</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="sortSelect">Sort:</label>
+                        <select id="sortSelect">
+                            <option value="publishedAt">Latest Stories</option>
+                            <option value="relevancy">Relevance</option>
+                            <option value="popularity">Popularity</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loader Spinner -->
+            <div class="loading-state" id="loadingState">
+                <div class="loader-ring"></div>
+                <p>Loading global publications...</p>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid grid-layout" id="newsGrid">
+                <!-- Injected dynamically via script.js -->
+            </div>
+
+            <!-- Error message container -->
+            <div class="error-state" id="errorState">
+                <div class="error-icon">⚠️</div>
+                <h3 class="error-title">Failed to load articles</h3>
+                <p class="error-desc" id="errorDesc">No connection to the server.</p>
+                <button class="primary-btn" id="retryBtn">Retry Connection</button>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="pagination-bar" id="paginationBar">
+                <button id="prevBtn" class="pagination-btn" disabled>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span>Previous</span>
+                </button>
+                <span id="pageInfo" class="page-info">Page 1 of 1</span>
+                <button id="nextBtn" class="pagination-btn">
+                    <span>Next</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-out Drawer for Bookmarks -->
+    <aside class="bookmarks-drawer" id="bookmarksDrawer">
+        <div class="drawer-header">
+            <h3>Saved Articles</h3>
+            <button id="closeDrawerBtn" class="action-icon-btn" aria-label="Close Bookmarks">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="drawer-body" id="bookmarksContainer">
+            <!-- Dynamic elements -->
+            <div class="empty-state">
+                <div class="empty-icon">🔖</div>
+                <p>No saved articles yet. Bookmark news cards to access them later.</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Overlay Backdrop -->
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- API Config / Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>API Preferences</h2>
+                <button class="action-icon-btn close-modal-btn" id="closeSettingsBtn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="apiProvider">News Data Provider</label>
+                        <select id="apiProvider">
+                            <option value="demo">Demo Mode (Interactive Offline Mock Data)</option>
+                            <option value="gnews">GNews API (Free, CORS-friendly client-side)</option>
+                            <option value="newsapi">NewsAPI.org (CORS restriction: localhost only)</option>
+                        </select>
+                    </div>
+
+                    <!-- GNews Key Container -->
+                    <div class="form-group api-key-group" id="gnewsKeyContainer" style="display: none;">
+                        <label for="gnewsKey">GNews API Token</label>
+                        <input type="password" id="gnewsKey" placeholder="Paste GNews API Key here...">
+                        <p class="form-help">Get a free key (100 daily requests) at <a href="https://gnews.io/" target="_blank" rel="noopener noreferrer">gnews.io</a>. Safe to use from your browser on GitHub Pages.</p>
+                    </div>
+
+                    <!-- NewsAPI Key Container -->
+                    <div class="form-group api-key-group" id="newsapiKeyContainer" style="display: none;">
+                        <label for="newsapiKey">NewsAPI.org Token</label>
+                        <input type="password" id="newsapiKey" placeholder="Paste NewsAPI.org Key here...">
+                        <p class="form-help">Get a free developer key (100 daily requests) at <a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">newsapi.org</a>. Note: Works on <code>localhost</code>, but fails with CORS errors on Github Pages.</p>
+                    </div>
+
+                    <button type="submit" class="primary-btn w-100">Save Configuration</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Detail Reader Modal -->
+    <div class="modal" id="readerModal">
+        <div class="modal-card reader-card">
+            <div class="modal-header reader-header">
+                <div class="reader-meta">
+                    <span class="source-badge" id="readerSource">Source</span>
+                    <span class="publish-time" id="readerDate">Date</span>
+                </div>
+                <div class="reader-actions">
+                    <button id="readerBookmarkBtn" class="action-icon-btn" title="Bookmark Article">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <button id="readerShareBtn" class="action-icon-btn" title="Share Article">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                    </button>
+                    <button class="action-icon-btn close-modal-btn" id="closeReaderBtn" aria-label="Close Reader">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body reader-body" id="readerBody">
+                <!-- Injected via script.js -->
+                <h1 class="reader-title" id="readerTitle">Article Title Placeholder</h1>
+                <div class="reader-author-row" id="readerAuthorRow">
+                    By <span class="reader-author" id="readerAuthor">Unknown Author</span>
+                </div>
+                <div class="reader-img-wrapper" id="readerImgWrapper">
+                    <img src="" alt="" id="readerImg">
+                </div>
+                <div class="reader-content" id="readerContent">
+                    Content goes here.
+                </div>
+                <div class="reader-footer-actions">
+                    <a href="" target="_blank" id="readerSourceLink" class="primary-btn outline-btn" rel="noopener noreferrer">
+                        <span>Read full article at source</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Successfully copied link to clipboard!</div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 NewsHub. Powered by GNews and NewsAPI. Built with HTML, CSS, and JS.</p>
+            <p class="footer-links">
+                <a href="https://github.com/Maomao101coder/news-app" target="_blank" rel="noopener noreferrer">GitHub Project</a> · 
+                <a href="#" id="footerConfigBtn">API Settings</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- App Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
